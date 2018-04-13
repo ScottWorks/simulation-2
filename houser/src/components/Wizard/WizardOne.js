@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class WizardOne extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class WizardOne extends Component {
 
   render() {
     const { name, address, city, state, zip } = this.state;
-
+    console.log(this.props);
     return (
       <div>
         <h1>Wizard One</h1>
@@ -79,4 +80,14 @@ class WizardOne extends Component {
   }
 }
 
-export default WizardOne;
+function mapStateToProps(state) {
+  return {
+    name: state.name,
+    address: state.address,
+    city: state.city,
+    state: state.state,
+    zip: state.zip
+  };
+}
+
+export default connect(mapStateToProps)(WizardOne);
